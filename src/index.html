@@ -5,10 +5,13 @@
     <title>Mapbox Storytelling</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css' rel='stylesheet' />
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
     <script src="https://unpkg.com/scrollama"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
     <style>
         body {
             margin:0;
@@ -90,30 +93,44 @@
             margin: auto;
         }
         .light {
-            color: #444;
+            color: #324997;
             background-color: #fafafa;
         }
         .dark {
-            color: #fafafa;
+            color: #black;
             background-color: #444;
         }
         .step {
             padding-bottom: 50vh;
             /* margin-bottom: 10vh; */
-            opacity: 0.25;
+            opacity: 0.1;
+            border-radius: 30px;
+            transition: opacity 0.5s ease-in-out;
+
+            
         }
         .step.active {
-            opacity: 0.9;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+
         }
 
         .step div {
-            padding:  25px 50px;
-            line-height: 25px;
-            font-size: 13px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.10);
+            box-shadow: 0px 357px 100px 0px rgba(0, 0, 0, 0.00), 0px 228px 91px 0px rgba(0, 0, 0, 0.01), 0px 128px 77px 0px rgba(0, 0, 0, 0.05), 0px 57px 57px 0px rgba(0, 0, 0, 0.09), 0px 14px 31px 0px rgba(0, 0, 0, 0.10);
+            -webkit-backdrop-filter: blur(100px);
+            backdrop-filter: blur(100px);
+            padding: 50px;
+            max-width: 352px;            
+            transition: opacity 0.5s ease-in-out;
+
+            
         }
 
         .step img {
             width: 100%;
+            border-radius: 30px;
         }
 
         @media (max-width: 750px) {
@@ -128,6 +145,57 @@
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
             touch-action: unset;
         }
+
+        .input-container {
+            display: flex;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .input-label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            
+        }
+
+        .input-field {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .input-field::placeholder {
+            
+        
+        }
+        .submit-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            /* background-color: #007bff; */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            background-color:transparent;
+            margin-top:20px;
+            color:inherit;
+        }
+
+        .submit-button:hover {
+            /* background-color: #0056b3; */
+        }
+
+        .submit-button:active {
+            /* background-color: #004494; */
+        }
+
 
         </style>
 </head>
@@ -209,16 +277,17 @@ config.chapters.forEach((record, idx) => {
     var container = document.createElement('div');
     var chapter = document.createElement('div');
 
-    if (record.title) {
-        var title = document.createElement('h3');
-        title.innerText = record.title;
-        chapter.appendChild(title);
-    }
+    
 
     if (record.image) {
         var image = new Image();
         image.src = record.image;
         chapter.appendChild(image);
+    }
+    if (record.title) {
+        var title = document.createElement('h3');
+        title.innerText = record.title;
+        chapter.appendChild(title);
     }
 
     if (record.description) {
@@ -279,6 +348,7 @@ var map = new mapboxgl.Map({
     transformRequest: transformRequest,
     projection: config.projection
 });
+map.dragRotate.enable();
 
 // Create a inset map if enabled in config.js
 if (config.inset) {
@@ -298,8 +368,10 @@ if (config.inset) {
 }
 
 if (config.showMarkers) {
-    var marker = new mapboxgl.Marker({ color: config.markerColor });
+    var marker = new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates);
     marker.setLngLat(config.chapters[0].location.center).addTo(map);
+    new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+
 }
 
 // instantiate the scrollama
@@ -397,6 +469,44 @@ map.on("load", function() {
         document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
     }
 });
+
+const tb = (window.tb = new Threebox(
+        map,
+        map.getCanvas().getContext('webgl'),
+        {
+            defaultLights: true
+        }
+    ));
+
+    map.on('style.load', () => {
+        map.addLayer({
+            id: 'custom-threebox-model',
+            type: 'custom',
+            renderingMode: '3d',
+            onAdd: function () {
+                // Creative Commons License attribution:  Metlife Building model by https://sketchfab.com/NanoRay
+                // https://sketchfab.com/3d-models/metlife-building-32d3a4a1810a4d64abb9547bb661f7f3
+                const scale = 3.2;
+                const options = {
+                    obj: 'https://docs.mapbox.com/mapbox-gl-js/assets/metlife-building.gltf',
+                    type: 'gltf',
+                    scale: { x: scale, y: scale, z: 10 },
+                    units: 'meters',
+                    rotation: { x: 90, y: -90, z: 0 }
+                };
+
+                tb.loadObj(options, (model) => {
+                    model.setCoords([7.12800, 51.24761]);
+                    model.setRotation({ x: 0, y: 0, z: 241 });
+                    tb.add(model);
+                });
+            },
+
+            render: function () {
+                tb.update();
+            }
+        });
+    });
 
 //Helper functions for insetmap
 function getInsetBounds() {

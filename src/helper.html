@@ -4,10 +4,11 @@
     <meta charset='utf-8' />
     <title>Position Helper</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css' type='text/css' />
+    
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -35,10 +36,10 @@
 <script>
     var position = document.getElementById("position");
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg';
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWlsb29ubyIsImEiOiJjbHQ2MzN5aTkwNXh4MmtxdW1oajZ2cHU5In0.fx3hDoyTO25rLdezTC8UEQ';
     var map = new mapboxgl.Map({
         container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        style: 'mapbox://styles/miloono/club3xujn00bf01r5du7i8cvl', // stylesheet location
         center: [-74.50, 40], // starting position [lng, lat]
         zoom: 9, // starting zoom
         pitch: 45,
@@ -73,7 +74,8 @@
                 'sky-atmosphere-sun-intensity': 15
             }
         });
-    });
+    });    
+
 
     map.on("moveend", function() {
         updatePosition()
