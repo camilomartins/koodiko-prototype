@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SheetDB Update</title>
+		<style>
+			#updateDiv {
+				width: 200px;
+				height: 100px;
+				background-color: lightblue;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				margin: auto;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				position: absolute;
+			}
+
+			.loading {
+				display: none;
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 1.5em;
+				color: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<section data-sheetdb-url="https://sheetdb.io/api/v1/zv2d7gspuje69" data-sheetdb-search="id=1">
+			<h1>Stimmen für B: {{title}}</h1>
+			<h1>Stimmen für A: {{count}}</h1>
+			<h1 id="data">Loading</h1>
+		</section>
+
+		<div id="updateDiv">Klick mich!</div>
+		<div class="loading" id="loading">Daten werden übertragen...</div>
+
+		<script>
+			async function fetchData() {
+				try {
+					const response = await fetch('https://sheetdb.io/api/v1/zv2d7gspuje69/search?id=1')
+					const data = await response.json();
+					document.getElementById('data').textContent = data[0].count;
+					console.log(data[0].count);
+				} catch (error) {
+					console.error('Error fetching data:', error);
+				}
+			}
+
+			// Initial data load
+			fetchData();
+
+			// Update data every 10 seconds
+			setInterval(fetchData, 100000);
+
+
+
+			document.getElementById('updateDiv').addEventListener('click', function () {
+				var loading = document.getElementById('loading');
+				loading.style.display = 'block'; // Show loading animation
+				// URL der API
+				const url = 'https://sheetdb.io/api/v1/zv2d7gspuje69';
+
+				// Abrufen der aktuellen Daten
+
+				fetch('https://sheetdb.io/api/v1/zv2d7gspuje69')
+					.then((response) => response.json())
+					.then((data) => console.log(data))
+					.then((data) => {
+						// Überprüfen, ob Daten vorhanden sind
+						if (data.length > 0) {
+							// Daten nach ID filtern, wenn ID 1 vorhanden ist
+							const item = data.find((record) => record.id === 1);
+							if (item) {
+								const countValue = item.count; // Den Wert der Zelle "count" aus dem Datensatz holen
+								console.log('Wert der Zelle "count" mit ID 1:', countValue);
+							} else {
+								console.log('Datensatz mit ID 1 nicht gefunden.');
+							}
+						} else {
+							console.log('Keine Daten gefunden.');
+						}
+					})
+					.catch((error) => {
+						console.error('Fehler beim Abrufen der Daten:', error);
+					});
+			});
+
+			// Funktion zum Auslesen von GET-Parametern aus der URL
+			function getQueryParams() {
+				const params = new URLSearchParams(window.location.search);
+				const queryParams = {};
+
+				params.forEach((value, key) => {
+					queryParams[key] = value;
+				});
+
+				return queryParams;
+			}
+			// Funktion, die ausgeführt werden soll, wenn der GET-Parameter vorhanden ist
+			function handleParameter(paramValue) {
+				console.log('Parameter gefunden:', paramValue);
+				// Hier kannst du die gewünschte Funktionalität implementieren
+
+				fetch('https://sheetdb.io/api/v1/zv2d7gspuje69', {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						data: [
+							{
+								id: 'DATETIME',
+								count: 'INCREMENT',
+							},
+						],
+					}),
+				})
+					.then((response) => response.json())
+					.then((data) => console.log(data));
+
+				// Zuerst den aktuellen Wert abrufen
+			}
+
+			// Funktion zum Überprüfen, ob ein GET-Parameter vorhanden ist
+			function checkQueryParam(paramName) {
+				const params = new URLSearchParams(window.location.search);
+
+				if (params.has(paramName)) {
+					const paramValue = params.get(paramName);
+					handleParameter(paramValue);
+				} else {
+					console.log(`Parameter ${paramName} nicht gefunden.`);
+				}
+			}
+
+			// Beispiel: Überprüfen, ob der Parameter "example" vorhanden ist
+			checkQueryParam('test');
+
+			// Get-Parameter auslesen und in der Konsole ausgeben
+			const queryParams = getQueryParams();
+			//console.log(queryParams);
+		</script>
+		<script src="https://sheetdb.io/handlebars.js"></script>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular mit Ladeanimation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .col-md-6 {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        label {
+            margin-bottom: 5px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            background-color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .loading {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- <iframe src="https://arrenberg.studio/koodiko" title="Beispiel Iframe"></iframe> -->
+    <form action="https://sheetdb.io/api/v1/zv2d7gspuje69" method="post" id="sheetdb-form-submit">
+        <div class="col-md-6 name">
+            <label for="Name" class="hov">Dein Name</label>
+            <input type="text" name="data[name]" id="Name" placeholder="Name" class="PRN" required />
+        </div>
+
+        <div class="col-md-6 block">
+            <label for="Contact NO.">Dein Kommentar</label>
+            <input type="text" name="data[nummer]" placeholder="Dein Kommentar" class="PRN" id="nummer" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Absenden</button>
+    </form>
+
+    <div class="loading" id="loading">Daten werden übertragen...</div>
+
+    <script type="text/javascript">
+        var form = document.getElementById("sheetdb-form-submit");
+        var loading = document.getElementById("loading");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            loading.style.display = 'block'; // Show loading animation
+
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none'; // Hide loading animation
+                if (data.created) { // Checking if the form submission was successful
+                    alert("Registrierung erfolgreich!");
+                } else {
+                    alert("Fehler bei der Registrierung. Bitte versuchen Sie es erneut.");
+                }
+            })
+            .catch(error => {
+                loading.style.display = 'none'; // Hide loading animation
+                alert("Ein Fehler ist aufgetreten: " + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
