@@ -1,0 +1,22 @@
+{
+    "name": "mein-tailwind-projekt",
+    "version": "1.0.0",
+    "description": "Ein Projekt mit Tailwind CSS",
+    "main": "index.js",
+    "scripts": {
+      "dev": "npx tailwindcss -i ./styles/tailwind.css -o ./styles/output.css --watch"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "tailwindcss": "^3.3.0",
+      "postcss": "^8.4.16",
+      "autoprefixer": "^10.4.7"
+    },
+    "browserslist": [
+      "last 2 versions",
+      "> 1%",
+      "maintained node versions",
+      "not dead"
+    ]
+  }
+  
