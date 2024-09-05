@@ -83,7 +83,7 @@ var config = {
                 <input type="radio" name="option" value="option1" class="peer hidden">
                 <span class="block h-12 peer-checked:bg-blue-500 peer-checked:text-white p-3 border rounded-md cursor-pointer">
                     Variante 1
-                    <img src="./images/simonz.jpeg" alt="Image Description">
+                    
                 </span>
             </label>
             
@@ -193,7 +193,7 @@ var config = {
                     Wie können der bestehende Zustand und geplante Entwicklungen die Sicherheitsbedenken der Bürger in der Gegend beeinflussen?
                 </p>
                 <form ">                    
-                    <textarea style="padding:10px;" id="fließtext" name="fließtext" rows="5" cols="40" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
+                    <textarea class="w-full border-2 rounded-xl	mt-8" style="padding:10px;" id="fließtext" name="fließtext" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
                 </form>
             `,
 			location: {
@@ -227,7 +227,7 @@ var config = {
                     Wei kann die Einbeziehung von Bürgerfeedback ni das urbane Design die Funktionalität und Benutzerzufriedenheit öffentlicher Räume verbessern?
                 </p>
                 <form ">                    
-                    <textarea style="padding:10px;" id="fließtext" name="fließtext" rows="5" cols="40" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
+                    <textarea class="w-full border-2 rounded-xl	mt-8" style="padding:10px;" id="fließtext" name="fließtext" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
                 </form>
             `,
 			location: {
@@ -261,7 +261,7 @@ var config = {
                     Wie können Innovationsworkshops mit Bürgerbeteiligung zu praktischen und innovativen Lösungen für urbane Herausforderungen führen?
                 </p>
                 <form ">                    
-                    <textarea style="padding:10px;" id="fließtext" name="fließtext" rows="5" cols="40" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
+                    <textarea class="w-full border-2 rounded-xl	mt-8" style="padding:10px;" id="fließtext" name="fließtext" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
                 </form>
             `,
 			location: {

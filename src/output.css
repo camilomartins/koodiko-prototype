@@ -814,6 +814,7 @@ a, a:hover, a:visited {
 
 #features {
   width: 100%;
+  padding-top: 20vh;
   padding-bottom: 10vh;
   border: 10px solid #444;
   box-sizing: border-box;
@@ -894,7 +895,7 @@ a, a:hover, a:visited {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
   transition: border-color 0.3s ease;
 }
 
