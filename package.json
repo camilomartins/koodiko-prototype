@@ -4,7 +4,7 @@
     "description": "Ein Projekt mit Tailwind CSS",
     "main": "index.js",
     "scripts": {
-      "dev": "npx tailwindcss -i ./styles/tailwind.css -o ./styles/output.css --watch"
+      "dev": "npx tailwindcss -i ./src/style.css -o ./src/output.css --watch"
     },
     "dependencies": {},
     "devDependencies": {

@@ -2,7 +2,7 @@ var config = {
 	style: 'mapbox://styles/miloono/club3xujn00bf01r5du7i8cvl',
 	accessToken: 'pk.eyJ1IjoibWlsb29ubyIsImEiOiJjbHQ2MzN5aTkwNXh4MmtxdW1oajZ2cHU5In0.fx3hDoyTO25rLdezTC8UEQ',
 	showMarkers: true,
-	markerColor: 'black',
+	markerColor: 'green',
 	//projection: 'equirectangular',
 	//Read more about available projections here
 	//https://docs.mapbox.com/mapbox-gl-js/example/projections/
@@ -10,10 +10,6 @@ var config = {
 	theme: 'light',
 	use3dTerrain: false, //set true for enabling 3D maps.
 	auto: false,
-	title: '',
-	subtitle: '',
-	byline: '',
-	footer: '',
 	chapters: [
 		{
 			id: 'first-chapter',
@@ -26,10 +22,10 @@ var config = {
                     Wie kann die Bürgerbeteiligung die Entscheidung zur Umbenennung des Hindenburgplatzes beeinflussen, und welche Perspektiven haben die Bürger zur historischen Bedeutung des Platzes?
                 </p>
                 <p>
-                    Welche Methoden sind am effektivsten, um historische und kulturelle Bildung durch partizipative Aktivitäten ni die Stadtplanung zu integrieren? 
+                    Welche Methoden sind am effektivsten, um historische und kulturelle Bildung durch partizipative Aktivitäten in die Stadtplanung zu integrieren? 
                 </p>
                 <p>
-                    Wie können virtuele Touren das Engagement der Gemeinschaft mit historischen Stätten in städtischen Gebieten fördern?
+                    Wie können virtuelle Touren das Engagement der Gemeinschaft mit historischen Stätten in städtischen Gebieten fördern?
                 </p>
                 <form ">                    
                     <textarea class="w-full border-2 rounded-xl	mt-8" style="padding:10px;" id="fließtext" name="fließtext" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
@@ -77,7 +73,7 @@ var config = {
                 <p>
                     Wie können Workshops zur urbanen Gartenarbeit und gemeinschaftliche Pflanzaktionen das Umweltbewusstsein und die Beteiligung der Bewohner fördern?
                 </p>
-                <form class="space-y-10">
+                <form class="space-y-4 w-full">
             <!-- Option 1 -->
             <label class="block">
                 <input type="radio" name="option" value="option1" class="peer hidden">
@@ -90,7 +86,7 @@ var config = {
             <!-- Option 2 -->
             <label class="block w-full">
                 <input type="radio" name="option" value="option2" class="peer hidden">
-                <div class="w-full peer-checked:bg-blue-500 peer-checked:text-white p-3 border rounded-md cursor-pointer">
+                <div class=" peer-checked:bg-blue-500 peer-checked:text-white p-3 border rounded-md cursor-pointer">
                     Variante 2
                 </div>
             </label>
@@ -98,7 +94,7 @@ var config = {
             <!-- Option 3 -->
             <label class="block">
                 <input type="radio" name="option" value="option3" class="peer hidden">
-                <span class="peer-checked:bg-blue-500 peer-checked:text-white p-3 border rounded-md cursor-pointer">
+                <span class="block peer-checked:bg-blue-500 peer-checked:text-white p-3 border rounded-md cursor-pointer">
                     Variante 3
                 </span>
             </label>
@@ -136,7 +132,7 @@ var config = {
                     Wie kann die Integration von Bike-Sharing-Stationen und 5G-Technologie die Anbindung und Mobilität des öffentlichen Nahverkehrs am Hindenburgplatz verbessern?
                 </p>
                 <p>
-                    Was sind die wichtigsten Mobilitätsbedürfnisse und - präferenzen der Bürger mi Bereich Hindenburgplatz?                
+                    Was sind die wichtigsten Mobilitätsbedürfnisse und - präferenzen der Bürger im Bereich Hindenburgplatz?                
                 </p>
                 <p>
                     Wie effektiv ist der virtuelle Fußverkehrs-Check bei der Sammlung von Daten und Feedback zur Bewegung und Sicherheit von Fußgängern?
@@ -224,7 +220,7 @@ var config = {
                     Welche Methoden sind am effektivsten, um Bürgerfeedback uz städtischen Annehmlichkeiten uz sammeln und in den Designprozess zu integrieren?
                 </p>
                 <p>
-                    Wei kann die Einbeziehung von Bürgerfeedback ni das urbane Design die Funktionalität und Benutzerzufriedenheit öffentlicher Räume verbessern?
+                    Wei kann die Einbeziehung von Bürgerfeedback in das urbane Design die Funktionalität und Benutzerzufriedenheit öffentlicher Räume verbessern?
                 </p>
                 <form ">                    
                     <textarea class="w-full border-2 rounded-xl	mt-8" style="padding:10px;" id="fließtext" name="fließtext" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
@@ -254,13 +250,13 @@ var config = {
                 <p>
                     Wie können Smart-City-Technologien, wie Echtzeit- Informationskioske und digitale Karten, das städtische Leben am Hindenburgplatz verbessern?
                 </p>
-                <p class="text-3xl">
+                <p class="">
                     Was sind die potenziellen Vorteile und Herausforderungen bei der Integration smarter Technologien ni bestehende städtische Infrastrukturen?
                 </p>
                 <p>
                     Wie können Innovationsworkshops mit Bürgerbeteiligung zu praktischen und innovativen Lösungen für urbane Herausforderungen führen?
                 </p>
-                <form ">                    
+                <form>                        
                     <textarea class="w-full border-2 rounded-xl	mt-8" style="padding:10px;" id="fließtext" name="fließtext" placeholder="Hier können Sie Ihre Antwort eingeben"></textarea>
                 </form>
             `,

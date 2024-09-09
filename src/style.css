@@ -9,7 +9,6 @@
     -webkit-backdrop-filter: blur(100px);
     backdrop-filter: blur(100px);
     padding: 30px;
-    max-width: 352px;            
     transition: opacity 0.5s ease-in-out;    
 }
 
@@ -66,9 +65,6 @@ a, a:hover, a:visited {
 }
 #features {
     width: 100%;
-    padding-top: 20vh;
-    padding-bottom: 10vh;
-    border: 10px solid #444;
     box-sizing: border-box; /* Add this line */
 }
 .hidden {
@@ -120,8 +116,14 @@ a, a:hover, a:visited {
 
 @media (max-width: 750px) {
     .centered, .lefty, .righty, .fully {
-        width: 90vw;
+        width: 100vw;
         margin: 0 auto;
+    }
+    .features {        
+        padding-top: 60vh;    
+    }
+    .step{
+        margin-top: 60vh;
     }
 }
 
@@ -152,10 +154,6 @@ a, a:hover, a:visited {
     border-color: #007bff;
 }
 
-.input-field::placeholder {
-    
-
-}
 .submit-button {
     padding: 10px 15px;
     font-size: 16px;
