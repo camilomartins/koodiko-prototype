@@ -1,3 +1,14 @@
+async function loadDescriptionContent(fileName) {
+    try {
+        const response = await fetch(fileName);  // Lade die angegebene Datei
+        const data = await response.text();  // Wandelt die Antwort in Text um
+        return data;  // Gibt den geladenen Inhalt zurück
+    } catch (error) {
+        console.error('Fehler beim Laden der Datei:', error);
+        return '';  // Gibt einen leeren String zurück im Fehlerfall
+    }
+}
+
 var config = {
 	style: 'mapbox://styles/miloono/club3xujn00bf01r5du7i8cvl',
 	accessToken: 'pk.eyJ1IjoibWlsb29ubyIsImEiOiJjbHQ2MzN5aTkwNXh4MmtxdW1oajZ2cHU5In0.fx3hDoyTO25rLdezTC8UEQ',
@@ -11,6 +22,83 @@ var config = {
 	use3dTerrain: false, //set true for enabling 3D maps.
 	auto: false,
 	chapters: [
+		{
+			id: 'first-chapter',
+			alignment: 'left',
+			hidden: false,
+			title: 'Bürger:innenbeteiligung Baden-Baden',
+			image: './images/aufbruch.jpeg',
+			description: `
+			<!-- Container für die Fortschrittsanzeige -->
+				<div class="max-w-xl mx-auto">
+					<!-- Fortschrittsanzeige -->
+					<div class="flex justify-between items-center mb-6">
+						<!-- Schritt 1: Ideensammlung -->
+						<div class="relative flex flex-col items-center text-center">
+							<div class="rounded-full h-10 w-10 flex items-center justify-center bg-green-500 text-white font-semibold">1</div>
+							<span class="mt-2 text-sm font-medium text-green-600">Ideensammlung</span>
+							<div class="absolute top-5 left-10 w-40 border-t-2 border-green-500"></div>
+						</div>
+
+						<!-- Schritt 2: Diskussion -->
+						<div class="relative flex flex-col items-center text-center">
+							<div class="rounded-full h-10 w-10 flex items-center justify-center bg-green-500 text-white font-semibold">2</div>
+							<span class="mt-2 text-sm font-medium text-green-600">Diskussion</span>
+							<div class="absolute top-5 left-10 w-40 border-t-2 border-green-500"></div>
+						</div>
+
+						<!-- Schritt 3: Abstimmung -->
+						<div class="relative flex flex-col items-center text-center">
+							<div class="rounded-full h-10 w-10 flex items-center justify-center bg-blue-500 text-white font-semibold">3</div>
+							<span class="mt-2 text-sm font-medium text-blue-600">Abstimmung</span>
+							<div class="absolute top-5 left-10 w-40 border-t-2 border-gray-300"></div>
+						</div>
+
+						<!-- Schritt 4: Umsetzung -->
+						<div class="relative flex flex-col items-center text-center">
+							<div class="rounded-full h-10 w-10 flex items-center justify-center bg-gray-300 text-white font-semibold">4</div>
+							<span class="mt-2 text-sm font-medium text-gray-500">Umsetzung</span>
+						</div>
+					</div>
+
+					<!-- Container für die Zeitbasierte Fortschrittsanzeige -->
+					<div class="max-w-xl mx-auto p-6 rounded-lg">
+						<!-- Fortschrittsbalken -->
+						<div class="relative w-full h-4 bg-gray-300 rounded-full">
+							<!-- Verstrichener Zeitabschnitt -->
+							<div class="absolute top-0 left-0 h-4 bg-blue-600 rounded-full" style="width: 50%"></div>
+						</div>
+
+						<!-- Fortschritts-Text -->
+						<div class="mt-2 text-sm text-gray-600 text-right">50% der Zeit verstrichen</div>
+					</div>
+				</div>
+				<p class="">Wie kann die Bürgerbeteiligung die Entscheidung zur Umbenennung des Hindenburgplatzes beeinflussen, und welche Perspektiven haben die Bürger zur historischen Bedeutung des Platzes?</p>
+				
+				
+			`,
+			location: {
+				center: [8.23698, 48.76418],
+				zoom: 19.08,
+				pitch: 51.62,
+				bearing: 31.69,
+				speed: 0.4,
+				curve: 1,
+			},
+			mapAnimation: 'flyTo',
+			rotateAnimation: false,
+			callback: '',
+			onChapterEnter: [
+				{
+					layer: 'mapbox-satellite',
+					opacity: 0,
+					duration: 500,
+				},
+			],
+			onChapterExit: [
+				
+			],
+		},
 		{
 			id: 'first-chapter',
 			alignment: 'left',
@@ -32,28 +120,29 @@ var config = {
                 </form>
                 `,
 			location: {
-				center: [8.23685, 48.76503],
-				zoom: 18.9,
-				pitch: 55.12,
-				bearing: -147.51,
+				center: [8.23698, 48.76418],
+				zoom: 19.08,
+				pitch: 51.62,
+				bearing: 31.69,
 				speed: 0.4,
 				curve: 1,
 			},
 			mapAnimation: 'flyTo',
-			rotateAnimation: true,
+			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [
-				// {
-				//     layer: 'layer-name',
-				//     opacity: 1,
-				//     duration: 5000
-				// }
+				{
+					layer: 'mapbox-satellite',
+					opacity: 1,
+					duration: 500,
+				},
 			],
 			onChapterExit: [
-				// {
-				//     layer: 'layer-name',
-				//     opacity: 0
-				// }
+				{
+					layer: 'mapbox-satellite',
+					opacity: 0,
+					duration: 500,
+				},
 			],
 		},
 		{
@@ -116,9 +205,15 @@ var config = {
 				//curve: 1, // change the speed at which it zooms out
 			},
 			mapAnimation: 'flyTo',
-			rotateAnimation: true,
+			rotateAnimation: false,
 			callback: '',
-			onChapterEnter: [],
+			onChapterEnter: [
+				{
+					layer: 'mapbox-satellite',
+					opacity: 1,
+					duration: 500,
+				},
+			],
 			onChapterExit: [],
 		},
 		{
@@ -167,7 +262,7 @@ var config = {
 				curve: 1,
 			},
 			mapAnimation: 'flyTo',
-			rotateAnimation: true,
+			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [],
 			onChapterExit: [],
@@ -269,7 +364,7 @@ var config = {
 				curve: 1,
 			},
 			mapAnimation: 'flyTo',
-			rotateAnimation: true,
+			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [],
 			onChapterExit: [],

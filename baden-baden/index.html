@@ -75,7 +75,7 @@
 			var story = document.getElementById('story');
 			var features = document.createElement('div');
 			features.setAttribute('id', 'features');
-			features.classList.add('snap-y'); // Füge hier die Klasse hinzu
+			features.classList.add('snap-y', "space-y-6" ); // Füge hier die Klasse hinzu
 
 			var header = document.createElement('div');
 
@@ -105,11 +105,11 @@
 					var story = document.createElement('p');
 					story.innerHTML = record.description;
 					chapter.appendChild(story);
-					story.classList.add('space-y-6'); // Füge hier die Klasse hinzu
+					
 				}
 
 				container.setAttribute('id', record.id);
-				container.classList.add('step', 'snap-center', 'mx-auto');
+				container.classList.add('step', 'snap-center', 'mx-auto', "space-y-6");
 				if (idx === 0) {
 					container.classList.add('active');
 				}

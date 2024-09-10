@@ -34,17 +34,18 @@ var config = {
             rotateAnimation: true,
             callback: '',
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1,
-                //     duration: 5000
-                // }
+                {
+                    layer: 'baeume-pitfm-18je5l',
+                    opacity: 0,
+                    duration: 500
+                }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                {
+                    layer: 'baeume-pitfm-18je5l',
+                    opacity: 1,
+                    duration: 500
+                }
             ]
         },
         {

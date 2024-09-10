@@ -196,6 +196,14 @@
 			.submit-button:active {
 				/* background-color: #004494; */
 			}
+			.mapboxgl-ctrl-top-right {
+				background-color: #007bff;
+                
+			}
+            .mapboxgl-ctrl mapboxgl-ctrl-group{
+                background-color: #007bff;
+                margin-top:20px !important;
+            }
 		</style>
 	</head>
 	<body>
@@ -345,11 +353,10 @@
 				projection: config.projection,
 			});
 
-            //Settings for controlling the Map
+			//Settings for controlling the Map
 			map.dragRotate.enable();
-            map.touchZoomRotate.enable();
-            map.touchZoomRotate.disableRotation();
-
+			map.touchZoomRotate.disable();
+			map.touchZoomRotate.enableRotation();
 
 			// Create a inset map if enabled in config.js
 			if (config.inset) {
@@ -399,8 +406,8 @@
 					});
 				}
 
-                //Get User Location controls
-                map.addControl(
+				//Get User Location controls
+				map.addControl(
 					new mapboxgl.GeolocateControl({
 						positionOptions: {
 							enableHighAccuracy: true,
@@ -542,8 +549,6 @@
 				});
 			}
 
-			
-
 			function updateInsetLayer(bounds) {
 				insetMap.getSource('boundsSource').setData(bounds);
 			}
@@ -552,6 +557,5 @@
 			window.addEventListener('resize', scroller.resize);
 		</script>
 
-		<script src="https://sheetdb.io/handlebars.js"></script>
 	</body>
 </html>

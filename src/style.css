@@ -65,7 +65,7 @@ a, a:hover, a:visited {
 }
 #features {
     width: 100%;
-    box-sizing: border-box; /* Add this line */
+    box-sizing: border-box; /* Add this line */    
 }
 .hidden {
     visibility: hidden;
@@ -95,6 +95,7 @@ a, a:hover, a:visited {
     background-color: #444;
 }
 .step {
+    margin-top: 200px;
     padding-bottom: 50vh;
     margin-bottom: 10vh;
     opacity: 0.1;
@@ -167,10 +168,9 @@ a, a:hover, a:visited {
     color:inherit;
 }
 
-.submit-button:hover {
-    /* background-color: #0056b3; */
-}
 
-.submit-button:active {
-    /* background-color: #004494; */
+/* Settings for the user Location button */
+.mapboxgl-ctrl-top-right {
+    background-color: #007bff;
+    border: 10px solid #ccc;
 }
