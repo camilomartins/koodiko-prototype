@@ -75,8 +75,7 @@
 			var story = document.getElementById('story');
 			var features = document.createElement('div');
 			features.setAttribute('id', 'features');
-            features.classList.add('snap-y'); // Füge hier die Klasse hinzu
-            
+			features.classList.add('snap-y'); // Füge hier die Klasse hinzu
 
 			var header = document.createElement('div');
 
@@ -89,7 +88,6 @@
 			config.chapters.forEach((record, idx) => {
 				var container = document.createElement('div');
 				var chapter = document.createElement('div');
-				
 
 				if (record.image) {
 					var image = new Image();
@@ -126,7 +124,6 @@
 			});
 
 			story.appendChild(features);
-
 
 			mapboxgl.accessToken = config.accessToken;
 
@@ -264,6 +261,17 @@
 				if (config.auto) {
 					document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
 				}
+				map.addControl(
+					new mapboxgl.GeolocateControl({
+						positionOptions: {
+							enableHighAccuracy: true,
+						},
+						// When active the map will receive updates to the device's location as it changes.
+						trackUserLocation: true,
+						// Draw an arrow next to the location dot to indicate which direction the device is heading.
+						showUserHeading: true,
+					})
+				);
 			});
 
 			//Helper functions for insetmap
