@@ -1,12 +1,12 @@
-async function loadDescriptionContent(fileName) {
-    try {
-        const response = await fetch(fileName);  // Lade die angegebene Datei
-        const data = await response.text();  // Wandelt die Antwort in Text um
-        return data;  // Gibt den geladenen Inhalt zurück
-    } catch (error) {
-        console.error('Fehler beim Laden der Datei:', error);
-        return '';  // Gibt einen leeren String zurück im Fehlerfall
-    }
+
+
+const animation = 'easeTo';
+var kapitel = 0;
+
+function chapterCount() {
+	kapitel++; // Erhöht den Wert von chapter um 1
+	console.log(kapitel);
+	return kapitel; // Gibt den Wert von chapter zurück
 }
 
 var config = {
@@ -22,8 +22,8 @@ var config = {
 	use3dTerrain: false, //set true for enabling 3D maps.
 	auto: false,
 	chapters: [
-		{
-			id: 'first-chapter',
+		{			
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Bürger:innenbeteiligung Baden-Baden',
@@ -78,14 +78,12 @@ var config = {
 				
 			`,
 			location: {
-				center: [8.23698, 48.76418],
-				zoom: 19.08,
-				pitch: 51.62,
-				bearing: 31.69,
-				speed: 0.4,
-				curve: 1,
+				center: [8.23740, 48.76540],
+				zoom: 16.55,
+				pitch: 74.96,
+				bearing: 10.40
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [
@@ -100,7 +98,7 @@ var config = {
 			],
 		},
 		{
-			id: 'first-chapter',
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Historische und kulturelle Bedeutung',
@@ -120,33 +118,25 @@ var config = {
                 </form>
                 `,
 			location: {
-				center: [8.23698, 48.76418],
-				zoom: 19.08,
-				pitch: 51.62,
-				bearing: 31.69,
+				center: [8.23716, 48.76478],
+				zoom: 19.24,
+				pitch: 64.96,
+				bearing: 26.40,
 				speed: 0.4,
 				curve: 1,
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [
-				{
-					layer: 'mapbox-satellite',
-					opacity: 1,
-					duration: 500,
-				},
+				
 			],
 			onChapterExit: [
-				{
-					layer: 'mapbox-satellite',
-					opacity: 0,
-					duration: 500,
-				},
+				
 			],
 		},
 		{
-			id: 'second-identifier',
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Grünflächen und Umweltbewusstsein',
@@ -204,7 +194,7 @@ var config = {
 				//speed: 2, // make the flying slow
 				//curve: 1, // change the speed at which it zooms out
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [
@@ -214,10 +204,16 @@ var config = {
 					duration: 500,
 				},
 			],
-			onChapterExit: [],
+			onChapterExit: [
+				{
+					layer: 'mapbox-satellite',
+					opacity: 0,
+					duration: 500,
+				}
+			],
 		},
 		{
-			id: 'third-identifier',
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Mobilität und öffentlicher Nahverkehr',
@@ -261,14 +257,18 @@ var config = {
 				speed: 0.4,
 				curve: 1,
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
-			onChapterEnter: [],
+			onChapterEnter: [{
+				layer: 'mapbox-satellite',
+				opacity: 0,
+				duration: 500,
+			}],
 			onChapterExit: [],
 		},
 		{
-			id: 'fourth-chapter',
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Sicherheit und Barrierefreiheit',
@@ -295,14 +295,14 @@ var config = {
 				speed: 0.4,
 				curve: 1,
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [],
 			onChapterExit: [],
 		},
 		{
-			id: 'fifth-chapter',
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Urbanes Design und Ausstattung',
@@ -329,14 +329,14 @@ var config = {
 				speed: 0.4,
 				curve: 1,
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [],
 			onChapterExit: [],
 		},
 		{
-			id: 'sixth-chapter',
+			id: chapterCount(),
 			alignment: 'left',
 			hidden: false,
 			title: 'Smarte Technologie und Innovation',
@@ -363,7 +363,7 @@ var config = {
 				speed: 0.4,
 				curve: 1,
 			},
-			mapAnimation: 'flyTo',
+			mapAnimation: animation,
 			rotateAnimation: false,
 			callback: '',
 			onChapterEnter: [],

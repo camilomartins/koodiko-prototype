@@ -10,6 +10,7 @@
     backdrop-filter: blur(100px);
     padding: 30px;
     transition: opacity 0.5s ease-in-out;    
+    
 }
 
 body {
@@ -64,8 +65,8 @@ a, a:hover, a:visited {
     z-index: 5;
 }
 #features {
-    width: 100%;
-    box-sizing: border-box; /* Add this line */    
+    
+    padding-bottom: 100vh;    
 }
 .hidden {
     visibility: hidden;
@@ -120,8 +121,9 @@ a, a:hover, a:visited {
         width: 100vw;
         margin: 0 auto;
     }
-    .features {        
+    #features {        
         padding-top: 60vh;    
+        
     }
     .step{
         margin-top: 60vh;
